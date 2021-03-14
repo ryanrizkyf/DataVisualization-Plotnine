@@ -45,6 +45,7 @@ df_inflasi = pd.read_csv(
 # Kita akan mencoba untuk membuat visualisasi jumlah penduduk di DKI Jakarta untuk masing-masing kabupaten/kota.
 
 # Kode di bawah ini akan memperlihatkan 5 baris pertama dari dataset kependudukan yang kita miliki.
+
 print(df_penduduk.head())
 
 # Menjalankan Fungsi ggplot
@@ -58,6 +59,7 @@ print(df_penduduk.head())
 
 # Note : Karena kita belum mendefinisikan komponen-komponen lain seperti aestetik dan objek geometris,
 # maka kita akan mendapatkan sebuah plot kosong.
+
 ggplot(data=df_penduduk).draw()
 plt.show()
 
@@ -73,6 +75,7 @@ plt.show()
 # dan untuk argumen y gunakan variabel berupa kolom berisi jumlah penduduk di dataset penduduk.
 
 # Menghasilkan :
+
 (ggplot(data=df_penduduk)
  + aes(x='NAMA KABUPATEN/KOTA', y='JUMLAH')
  ).draw()
@@ -158,6 +161,23 @@ plt.show()
 plotnine.options.figure_size = (12, 4.8)
 (ggplot(data=df_penduduk)
  + aes(x='NAMA KABUPATEN/KOTA', y='JUMLAH')
+ + geom_col()
+ + coord_flip()
+ + labs(title='Jumlah penduduk per kabupaten/kota di DKI Jakarta (2013)',
+        x='Kabupaten/Kota',
+        y='Jumlah Penduduk')
+ ).draw()
+plt.show()
+
+# Menampilkan Warna Berbeda
+
+# Bagaimana jika kita ingin menampilkan bar chart yang memiliki warna berbeda untuk perempuan dan laki-laki?
+# Kita dapat membuatnya dengan mendefinisikan argumen fill di fungsi aes.
+# Pada argumen fill di fungsi aes, berikan nilai berupa nama kolom jenis kelamin di data kependudukan kita.
+
+plotnine.options.figure_size = (10, 3.6)
+(ggplot(data=df_penduduk)
+ + aes(x='NAMA KABUPATEN/KOTA', y='JUMLAH', fill='JENIS KELAMIN')
  + geom_col()
  + coord_flip()
  + labs(title='Jumlah penduduk per kabupaten/kota di DKI Jakarta (2013)',
