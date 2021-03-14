@@ -3,6 +3,7 @@
 # sebelum kita membuat visualisasi data yang kita perlukan.
 # Oleh karena itu kita perlu mengimpor package pandas juga:
 
+import plotnine
 from plotnine import *
 import matplotlib.pyplot as plt
 import plotnine as p9
@@ -139,3 +140,28 @@ plt.show()
 
 # Note : Lebih lanjut tentang fungsi tersebut dapat dilihat di
 # (https://plotnine.readthedocs.io/en/stable/generated/plotnine.coords.coord_flip.html?highlight=coord_flip)
+
+# Menambah Judul dan Mengubah Label
+
+# Kita dapat menambahkan judul dan mengubah label pada axis di grafik dengan fungsi labs().
+
+# Berikut beberapa argumen yang dapat kita gunakan:
+# title : menambahkan judul plot
+# x : mendefinisikan label pada x-axis
+# y : mendefinisikan label pada y-axis
+
+# Gunakan fungsi labs untuk:
+# Menambahkan judul grafik yaitu "Jumlah penduduk per kabupaten/kota di DKI Jakarta (2013)"
+# Mengubah label "JUMLAH" menjadi "Jumlah Penduduk"
+# Mengubah label "NAMA KABUPATEN/KOTA" menjadi "Kabupaten/Kota"
+
+plotnine.options.figure_size = (12, 4.8)
+(ggplot(data=df_penduduk)
+ + aes(x='NAMA KABUPATEN/KOTA', y='JUMLAH')
+ + geom_col()
+ + coord_flip()
+ + labs(title='Jumlah penduduk per kabupaten/kota di DKI Jakarta (2013)',
+        x='Kabupaten/Kota',
+        y='Jumlah Penduduk')
+ ).draw()
+plt.show()
