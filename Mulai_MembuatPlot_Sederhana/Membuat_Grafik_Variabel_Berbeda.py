@@ -185,3 +185,25 @@ plotnine.options.figure_size = (10, 3.6)
         y='Jumlah Penduduk')
  ).draw()
 plt.show()
+
+# Membuat Grafik dengan Variabel Berbeda
+
+# Sekarang kita akan berlatih untuk membuat grafik serupa namun dengan variabel yang berbeda.
+
+# Buatlah grafik horizontal bar chart dengan ketentuan sebagai berikut:
+# Bar chart menggambarkan jumlah penduduk per kelurahan di kecamatan Cengkareng.
+# Judul grafik yaitu "Jumlah penduduk per kelurahan di Kecamatan Cengkareng (2013)"
+# Pada axis yang berisi nama kelurahan, berikan label "Kelurahan"
+# Pada axis yang berisi jumlah penduduk, berikan label "Jumlah Penduduk"
+# Berikan warna yang berbeda untuk jenis kelamin laki-laki dan perempuan.
+
+plotnine.options.figure_size = (10, 3.6)
+(ggplot(data=df_penduduk[df_penduduk['NAMA KECAMATAN'] == 'CENGKARENG'])
+ + aes(x='NAMA KELURAHAN', y='JUMLAH', fill='JENIS KELAMIN')
+ + geom_col()
+ + coord_flip()
+ + labs(title='Jumlah penduduk per kelurahan di DKI Jakarta (2013)',
+        x='Kelurahan',
+        y='Jumlah Penduduk')
+ ).draw()
+plt.show()
